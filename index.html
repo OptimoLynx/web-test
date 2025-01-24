@@ -5,15 +5,56 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>test</title>
+    <title>Form-Test</title>
     <style>
         body {
             display: flex;
             justify-content: center;
+            line-height: 1.6;
         }
-        
-        input {
-            border-radius: 5px;
+
+        p {
+            font-family: Lora,Georgia,Times,serif;
+            font-size: 1.8rem;
+        }
+
+        input[type=text], input[type=email] {
+            font-family: Lora;
+            font-size: 1rem;
+            padding: 4px 4px;
+            display:inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type=submit]:hover{
+            background: #086717;
+            cursor: pointer;
+        }
+
+        .form-select {
+            width: 35%;
+            font-family: Lora;
+            font-size: 1rem;
+            padding: 4px 4px;
+            background-color: white;
+            display:inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .form-field {
+            width: 98%;
+        }
+
+        .street, .ort {
+            width: 72%;
+        }
+
+        .number, .plz {
+            width: 25.5%;
         }
         
         .show-alert {
@@ -22,53 +63,54 @@
             text-align: center;
             color: white;
             border: none;
+            border-radius: 4px;
             cursor: pointer;
         }
     </style>
 </head>
 
 <body>
-    <form method="post" action="/content/action" onsubmit="myFunction()">
-        <div id="wrap-form">
-            <div class="fieldset">
+    <form id="donation_form" method="GET" action="results.html">
+        <div>
+            <div>
                 <h4>Ihr Beitrag</h4>
-                <div class="data">
-                    <div class="wrap-form-field">
+                <div>
+                    <div>
                         <label for="anrede">Anrede * </label><br />
-                        <select name="anrede" class="fields form-field" style="width: 40%">
+                        <select name="anrede" class="form-select" required>
                           <option value="0">Bitte Anrede wählen ...</option>
                           <option value="1">Herr</option>
                           <option value="2">Frau</option>
                           <option value="3">divers</option>
                         </select>
                     </div>
-                    <div class="wrap-form-field form">
+                    <div>
                         <label for="title">akad. Titel (ggf.)</label> <br />
-                        <input class="title form-field" type="text" name="title" value="" style="width: 98%" />
+                        <input class="form-field" type="text" name="title" value="" />
                     </div>
-                    <div class="wrap-form-field">
+                    <div>
                         <label for="namenszusatz">Namenszusätze (ggf.)</label> <br />
-                        <input class="namenszusatz" type="text" name="namenszusatz" value="" style="width: 98%" />
+                        <input class="form-field" type="text" name="namenszusatz" value="" />
                     </div>
-                    <div class="wrap-form-field">
+                    <div>
                         <label for="vorname">Vorname * </label> <br />
-                        <input class="vorname" type="text" name="vorname" value="" required="required" style="width: 98%" />
+                        <input class="form-field" type="text" name="vorname" value="" required />
                     </div>
-                    <div class="wrap-form-field">
+                    <div>
                         <label for="nachname">Nachname * </label> <br />
-                        <input class="nachname" type="text" name="nachname" value="" required="required" style="width: 98%" />
+                        <input class="form-field" type="text" name="nachname" value="" required />
                     </div>
-                    <div class="wrap-form-field">
+                    <div>
                         <label for="spende">Höhe der Spende *</label> <br />
-                        <input class="spende" type="text" name="spende" value="" style="width: 98%" />
+                        <input class="form-field" type="text" name="spende" value="" required />
                     </div>
-                    <div class="wrap-form-field">
+                    <div>
                         <label for="date">Datum</label> <br />
-                        <input class="date" type="text" name="date" value="" style="width: 98%" />
+                        <input class="form-field" type="text" name="date" value="" />
                     </div>
-                    <div class="wrap-form-field">
-                        <label for="projekt">Projektauswahl</label> <br />
-                        <select name="projekt" class="fields ez-select" required="required" style="width: 40%">
+                    <div>
+                        <label for="projekt">Projektauswahl *</label> <br />
+                        <select name="projekt" class="form-select" required>
                           <option value="">Bitte Projekt auswählen</option>
                             <option value="Bolivien, El Alto - Fundacíon Wiphala">
                 Bolivien, El Alto - Fundacíon Wiphala
@@ -159,60 +201,60 @@
                     </div>
                 </div>
             </div>
-            <div class="fieldset">
+            <div>
                 <h4>Versandadresse für die Spendenbescheinigung</h4>
-                <div class="data">
-                    <div class="wrap-form-field">
+                <div>
+                    <div>
                         <label for="co">c/o</label><br />
-                        <input class="co" type="text" name="co" value="" style="width: 98%" />
+                        <input class="form-field" type="text" name="co" value="" />
                     </div>
-                    <div class="wrap-form-field">
-                        <label for="street">Strasse *,</label> <label for="number">Nr. * </label><br />
-                        <input class="street" type="text" name="street" value="" style="width: 70.7%" />
-                        <input class="number" type="text" name="number" value="" required="required " style="width: 25.1%" />
+                    <div>
+                        <label for="street" class="street">Strasse *, </label><label for="number">Nr. * </label><br />
+                        <input class="street" type="text" name="street" value="" required />
+                        <input class="number" type="text" name="number" value="" required />
                     </div>
-                    <div class="wrap-form-field">
-                        <label for="plz">PLZ *</label><label for="ort">Ort *</label><br />
-                        <input class="plz" type="text" name="plz" value="" style="width: 25%" />
-                        <input class="ort" type="text" name="ort" value="" required="required" style="width: 70.7%" />
+                    <div>
+                        <label for="plz">PLZ *, </label><label for="ort">Ort *</label><br />
+                        <input class="plz" type="text" name="plz" value="" required />
+                        <input class="ort" type="text" name="ort" value="" required />
                     </div>
-                    <div class="wrap-form-field">
+                    <div>
                         <label for="land">Land *</label><br />
-                        <input class="land" type="text" name="land" value="" required="required " style="width: 98%" />
+                        <input class="form-field" type="text" name="land" value="" required />
                     </div>
-                    <div class="wrap-form-field">
+                    <div>
                         <label for="telefon">Vorwahl, Telefon</label><br />
-                        <input class="telefon" type="text" name="telefon" value="" style="width:98%" />
+                        <input class="form-field" type="text" name="telefon" value="" />
                     </div>
-                    <div class="wrap-form-field">
+                    <div>
                         <label for="email">Email *</label><br />
-                        <input class="email" type="email" size="20" name="email" value="" style="width:98%" />
+                        <input class="form-field" type="email" size="20" name="email" value="" />
                         <br /><br />
                     </div>
                 </div>
             </div>
         </div>
-        <div class="content-action">
-            <input type="submit" class="defaultbutton show-alert" name="submit" value="Absenden" />
+        <div>
+            <input type="submit" class="defaultbutton show-alert" onclick="submitFunction(), showAlert()" value="Absenden" />
         </div>
+
     </form>
     <script>
-        function myFunction() {
-            alert(`Vielen Dank für Ihre Spende! Diese Bestätigung gilt bis zur Höhe von 299 Euro auch als Spendenbescheinigung für das Finanzamt. Wir bedanken uns ganz herzlich für die Unterstützung unserer Arbeit und versichern Ihnen, dass der komplette Spendenbetrag ohne Abzug von Verwaltungskosten in das Förderprojekt fließt.
+        function submitFunction(){
+            var formReset = document.getElementById('donation_form');
+            formReset.addEventListener('submit', (e) => {
+                e.preventDefault();
+                formReset.reset();
+            });
+        }
+
+        function showAlert(){
+            var text = `Vielen Dank für Ihre Spende! Diese Bestätigung gilt bis zur Höhe von 299 Euro auch als Spendenbescheinigung für das Finanzamt. Wir bedanken uns ganz herzlich für die Unterstützung unserer Arbeit und versichern Ihnen, dass der komplette Spendenbetrag ohne Abzug von Verwaltungskosten in das Förderprojekt fließt.
 
 Mit freundlichen Grüßen
-Ihr Team von der Studiosus Foundation e.V.`);
+Ihr Team von der Studiosus Foundation e.V.`;
+            alert(text);
         }
     </script>
 </body>
-<script>
-    $("#submit").submit(function(e) {
-        e.preventDefault();
-        $.get("info.html", $("#submit").serialize(),
-            function(data) {
-                alert("Vielen Dank für Ihre Spende.");
-            });
-    });
-</script>
-
 </html>
